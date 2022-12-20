@@ -1,0 +1,47 @@
+﻿@page
+@model RazorCrudDemo_FACIT.Pages.Employees.ReadModel
+@{
+}
+
+<h1 class="mb-3">List of Employees (Total: @Model.Employees.Count)</h1>
+
+<a asp-page="Create"
+   class="btn btn-success my-2">
+    Create Employee
+</a>
+
+@if (Model.Employees != null && Model.Employees.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in Model.Employees)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Email</td>
+                    <td>
+                        <a asp-page="Update"
+                           asp-route-id="@emp.Id"
+                           class="btn btn-primary mx-2">
+                            Update
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No employees found!</p>
+}
